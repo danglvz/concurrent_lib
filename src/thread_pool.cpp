@@ -41,4 +41,23 @@ no_futeres_with_locks::~no_futeres_with_locks(){
 }
 
 
+/*
+
+no_futures_lock_free::no_futures_lock_free(unsigned int num_of_threads){
+    for ( unsigned int num{}; num < num_of_threads; ++num ){
+        threads.emplace_back([this](){
+            for (;;){
+                std::function<void()> task;
+                std::shared_ptr<std::function<void()>> temp;
+                if ( !tasks.empty() && done ){
+                    return;
+                } else {
+                    temp = tasks.pop();
+                    if ( temp == std::shared_ptr<std::function<void()>>() )
+                }
+            }
+        });
+    }
+}*/
+
 

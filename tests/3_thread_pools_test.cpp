@@ -13,5 +13,5 @@ TEST(thread_pool_with_locks, fake_task_test){
     no_futeres_with_locks tp{10};
     for (int i{}; i < 36; ++i){
         tp.submit([](){  std::this_thread::sleep_for(std::chrono::seconds(1));  });
-        }
+    }
 }
