@@ -4,7 +4,7 @@
 
 using namespace concurrent_lib::thread_pools;
 
-no_futeres_with_locks::no_futeres_with_locks(unsigned int num_of_threads) {
+no_futures_with_locks::no_futures_with_locks(unsigned int num_of_threads) {
     for (unsigned int num{}; num < num_of_threads; ++num){
         threads.emplace_back([this](){
 
@@ -26,13 +26,13 @@ no_futeres_with_locks::no_futeres_with_locks(unsigned int num_of_threads) {
     }
 }
 
-void no_futeres_with_locks::submit(std::function<void()> task){
+void no_futures_with_locks::submit(std::function<void()> task){
     std::scoped_lock<std::mutex> sl(mut);
     tasks.push(task);
     cond.notify_one();
 }
 
-no_futeres_with_locks::~no_futeres_with_locks(){
+no_futures_with_locks::~no_futures_with_locks(){
     done = true;
     cond.notify_all();
     for ( auto &thread: threads ){
